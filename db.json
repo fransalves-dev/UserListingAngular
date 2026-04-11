@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "João Silva",
+      "email": "joao.silva@email.com",
+      "phone": "51999999999",
+      "cpf": "123.456.789-00",
+      "typeOfPhone": "Celular"
+    },
+    {
+      "id": 2,
+      "name": "Maria Oliveira",
+      "email": "maria.oliveira@email.com",
+      "phone": "5133334444",
+      "cpf": "987.654.321-00",
+      "typeOfPhone": "Fixo"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Souza",
+      "email": "carlos.souza@email.com",
+      "phone": "51988887777",
+      "cpf": "111.222.333-44",
+      "typeOfPhone": null
+    }
+  ]
+}

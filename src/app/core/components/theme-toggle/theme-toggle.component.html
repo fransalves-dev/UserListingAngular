@@ -1,0 +1,14 @@
+<mat-button-toggle-group
+  [value]="theme()"
+  (change)="toggleTheme()"
+  appearance="legacy"
+  class="theme-toggle"
+>
+  <mat-button-toggle value="light">
+    <mat-icon>light_mode</mat-icon>
+  </mat-button-toggle>
+
+  <mat-button-toggle value="dark">
+    <mat-icon>dark_mode</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
