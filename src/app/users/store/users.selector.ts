@@ -18,14 +18,23 @@ export const selectUsersError = createSelector(
   (state) => state.error
 );
 
-export const selectUsersViewModel = createSelector(
-  selectUsers,
-  selectUsersLoading,
-  selectUsersError,
-  (users, loading, error) => ({
-    users,
-    loading,
-    error,
-    isEmpty: users.length === 0,
-  })
-);
+export const selectUsersViewModel = (term: string) =>
+  createSelector(
+    selectUsers,
+    selectUsersLoading,
+    selectUsersError,
+    (users, loading, error) => {
+      const filtered = term
+        ? users.filter(u =>
+            u.name.toLowerCase().includes(term.toLowerCase())
+          )
+        : users;
+
+      return {
+        users: filtered,
+        loading,
+        error,
+        isEmpty: filtered.length === 0,
+      };
+    }
+  );

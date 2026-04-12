@@ -6,18 +6,17 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { selectTheme } from './core/store/ui-control.selectors';
 import { ThemeToggleComponent } from './core/components/theme-toggle/theme-toggle.component';
+import { HeaderComponent } from './core/components/header/header.component';
+import { UsersPageComponent } from './users/page/users-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
-    ThemeToggleComponent
+    HeaderComponent,
+    UsersPageComponent
   ],
-  template: `
-    <app-theme-toggle />
-    <router-outlet />
-  `,
+  templateUrl: './app.html',
 })
 export class AppComponent {
   private store = inject(Store);

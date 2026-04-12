@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatButtonToggleModule, MatIconModule],
   templateUrl: './theme-toggle.component.html',
+  styleUrls: ['./theme-toggle.component.scss']
 })
 export class ThemeToggleComponent {
   private store = inject(Store);

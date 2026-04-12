@@ -1,0 +1,17 @@
+.page-container {
+  padding: 24px 5%;
+}
+
+.state {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--mat-sys-on-surface);
+}
+
+.table-container {
+  margin-top: 16px;
+}
+
+.state.error {
+  color: #f44336;
+}

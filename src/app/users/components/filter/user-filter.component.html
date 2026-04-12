@@ -1,0 +1,9 @@
+<div class="filter-container">
+  <mat-form-field appearance="outline" class="full-width custom-field">
+    <input matInput type="text" placeholder="Digite o nome..." [formControl]="search" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+   <mat-error *ngIf="search.invalid && (search.dirty || search.touched)" class="error-filter"> Apenas letras são permitidas </mat-error>
+
+</div>

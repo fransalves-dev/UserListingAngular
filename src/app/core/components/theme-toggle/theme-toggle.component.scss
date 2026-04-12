@@ -1,0 +1,15 @@
+.theme-toggle{
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--mat-sys-on-primary);
+  border: none !important;
+  cursor: pointer;
+}
+
+.theme-toggle mat-icon {
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.theme-toggle mat-icon.rotate {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>
+  {{ data ? 'Editar Usuário' : 'Criar Usuário' }}
+</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+
+  <mat-form-field>
+    <input matInput placeholder="Nome" formControlName="name" />
+    <mat-error *ngIf="form.get('name')?.invalid">
+      Nome é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" />
+    <mat-error *ngIf="form.get('email')?.invalid">
+      Email inválido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="CPF" formControlName="cpf" />
+    <mat-error *ngIf="form.get('cpf')?.invalid">
+      CPF obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Telefone" formControlName="phone" />
+    <mat-error *ngIf="form.get('phone')?.invalid">
+      Telefone obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="typeOfPhone">
+      <mat-option value="Celular">Celular</mat-option>
+      <mat-option value="Fixo">Fixo</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-button type="button" (click)="close()">Cancelar</button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Salvar
+    </button>
+  </div>
+
+</form>
