@@ -1,3 +1,11 @@
-<main-header/>
+<h2>Resultado da Paginação</h2>
 
-<app-users-page/>
+<p>Total de registros: {{ resultado.total }}</p>
+<p>Página atual: {{ resultado.pagina }}</p>
+<p>Total de páginas: {{ resultado.totalPaginas }}</p>
+
+<ul>
+  <li *ngFor="let user of resultado.itens">
+    <strong>{{ user.nome }}</strong> - {{ user.email }}
+  </li>
+</ul>

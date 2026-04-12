@@ -1,35 +1,27 @@
-import { Component, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { effect } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
-
-import { selectTheme } from './core/store/ui-control.selectors';
-import { ThemeToggleComponent } from './core/components/theme-toggle/theme-toggle.component';
-import { HeaderComponent } from './core/components/header/header.component';
-import { UsersPageComponent } from './users/page/users-page.component';
+import { Component } from '@angular/core';
+import { filtrarEPaginar } from './functions/filter-page.function';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    UsersPageComponent
-  ],
+  imports: [CommonModule],
   templateUrl: './app.html',
 })
+
 export class AppComponent {
-  private store = inject(Store);
+  usuarios: Usuario[] = [
+    { id: 1, nome: 'Ana Silva', email: 'ana@email.com' },
+    { id: 2, nome: 'Bruno Souza', email: 'bruno@email.com' },
+    { id: 3, nome: 'Carlos Lima', email: 'carlos@email.com' },
+    { id: 4, nome: 'Ana Costa', email: 'anacosta@email.com' },
+    { id: 5, nome: 'Fernanda Rocha', email: 'fernanda@email.com' },
+  ];
 
-  theme = toSignal(this.store.select(selectTheme), {
-    initialValue: 'light',
-  });
-
-  constructor() {
-    effect(() => {
-      const theme = this.theme();
-      document.body.classList.remove('light', 'dark');
-      document.body.classList.add(theme);
-    });
-  }
+  // 📄 resultado tipado
+  resultado = filtrarEPaginar<Usuario>(
+    this.usuarios,
+    (user) => user.nome.toLowerCase().includes('ana'),
+    { pagina: 1, tamanho: 2 },
+  );
 }
