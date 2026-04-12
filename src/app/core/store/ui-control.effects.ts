@@ -60,6 +60,7 @@ export class UIControlEffects {
           toast: {
             type: 'error',
             message: `Erro: ${action.error}`,
+            duration: 5000,
           },
         });
       }),
@@ -73,7 +74,7 @@ export class UIControlEffects {
         tap(({ toast }) => {
           this.snackBar.openFromComponent(ToastComponent, {
             data: toast,
-            duration: 1000,
+            duration: toast.duration || 3000,
             horizontalPosition: 'right',
             verticalPosition: 'bottom',
             panelClass: ['custom-snackbar', toast.type === 'success' ? 'success' : 'error'],

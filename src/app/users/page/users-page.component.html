@@ -1,18 +1,20 @@
 <div class="page-container">
-  <!-- FILTRO -->
   <app-users-filter (searchChange)="onSearch($event)" />
 
-  <!-- LOADING -->
   <div *ngIf="loading()" class="state">
-    <p>Carregando usuários...</p>
+    <mat-spinner diameter="40" />
+    <p class="info-text">Carregando usuários...</p>
   </div>
 
-  <!-- VAZIO -->
   <div *ngIf="!loading() && filteredUsers().length === 0" class="state">
-    <p>Nenhum usuário encontrado</p>
+    <p class="info-text">Nenhum usuário encontrado</p>
   </div>
 
-  <div class="table-container">
+  <div>
     <app-users-list *ngIf="!loading() && filteredUsers().length > 0" [users]="filteredUsers()" />
+  </div>
+
+  <div *ngIf="!loading()" class="btn-footer">
+    <button mat-button class="add-button" (click)="openCreate()"> + Adicionar usuário</button>
   </div>
 </div>

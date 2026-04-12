@@ -17,6 +17,7 @@ import { UsersPageComponent } from './users/page/users-page.component';
     UsersPageComponent
   ],
   templateUrl: './app.html',
+  styleUrls: ['./app.scss'],
 })
 export class AppComponent {
   private store = inject(Store);

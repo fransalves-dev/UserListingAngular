@@ -1,18 +1,13 @@
 .users-table {
-  width: 100%;
   background: var(--mat-sys-surface);
   border-radius: 12px;
   overflow: hidden;
 }
 
-mat-header-cell {
-  font-weight: 500;
-}
-
-mat-cell, mat-header-cell {
-  padding: 12px;
-}
-
-button {
-  margin-right: 8px;
+.inside-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
 }

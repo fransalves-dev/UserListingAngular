@@ -1,0 +1,54 @@
+.form{
+  padding: 10px 0px;
+}
+
+.title{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--mat-sys-on-surface);
+}
+
+.divider {
+ display: flex;
+ justify-content: space-between;
+}
+
+.divider mat-form-field {
+  width: 48%;
+  padding-bottom: 30px;
+}
+
+.divider mat-label {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--mat-sys-on-background);
+}
+
+.divider mat-error {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #c7291e;
+}
+
+.cancel-button {
+  background: #c7291e;
+  color: white !important;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.confirm-button {
+  background: var(--mat-sys-primary);
+  color: white !important;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+.confirm-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,6 +1,7 @@
 import { Component, inject, effect, signal, computed } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { UsersActions } from '../store/users.actions';
 
@@ -10,11 +11,12 @@ import { selectUsers, selectUsersLoading, selectUsersError } from '../store/user
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormModalComponent } from '../components/forms/user-form-modal.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-users-page',
   standalone: true,
-  imports: [UsersFilterComponent, UsersListComponent, CommonModule],
+  imports: [UsersFilterComponent, UsersListComponent, CommonModule, MatProgressSpinnerModule, MatButtonModule],
   templateUrl: './users-page.component.html',
   styleUrls: ['./users-page.component.scss'],
 })

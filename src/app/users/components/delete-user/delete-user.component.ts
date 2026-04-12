@@ -1,16 +1,13 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
   standalone: true,
-  template: `
-    <h2>Confirmar</h2>
-    <p>{{ data.message }}</p>
-
-    <button mat-button (click)="close()">Cancelar</button>
-    <button mat-raised-button color="warn" (click)="confirm()">Deletar</button>
-  `,
+  templateUrl: `./delete-user.component.html`,
+  imports: [MatDialogModule, MatButtonModule],
+  styleUrls: ['./delete-user.component.scss'],
 })
 export class ConfirmDialogComponent {
   constructor(

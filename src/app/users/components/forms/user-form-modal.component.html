@@ -1,51 +1,67 @@
-<h2 mat-dialog-title>
+<h2 mat-dialog-title class="title">
   {{ data ? 'Editar Usuário' : 'Criar Usuário' }}
 </h2>
 
-<form [formGroup]="form" (ngSubmit)="save()">
+<mat-dialog-content>
+  <form [formGroup]="form" class="form">
+    <div class="divider">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="getError('name')">
+          {{ getError('name') }}
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Nome" formControlName="name" />
-    <mat-error *ngIf="form.get('name')?.invalid">
-      Nome é obrigatório
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="getError('email')">
+          {{ getError('email') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email" />
-    <mat-error *ngIf="form.get('email')?.invalid">
-      Email inválido
-    </mat-error>
-  </mat-form-field>
+    <div class="divider">
+      <mat-form-field appearance="outline">
+        <mat-label>CPF</mat-label>
+        <input matInput formControlName="cpf" />
+        <mat-error *ngIf="getError('cpf')">
+          {{ getError('cpf') }}
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="CPF" formControlName="cpf" />
-    <mat-error *ngIf="form.get('cpf')?.invalid">
-      CPF obrigatório
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input matInput formControlName="phone" />
+        <mat-error *ngIf="getError('phone')">
+          {{ getError('phone') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field>
-    <input matInput placeholder="Telefone" formControlName="phone" />
-    <mat-error *ngIf="form.get('phone')?.invalid">
-      Telefone obrigatório
-    </mat-error>
-  </mat-form-field>
+    <div class="divider">
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="typeOfPhone">
+          <mat-option value="Celular">Celular</mat-option>
+          <mat-option value="Fixo">Fixo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
 
-  <mat-form-field>
-    <mat-label>Tipo</mat-label>
-    <mat-select formControlName="typeOfPhone">
-      <mat-option value="Celular">Celular</mat-option>
-      <mat-option value="Fixo">Fixo</mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-dialog-actions align="end">
+  <button mat-button class="cancel-button" (click)="close()">Cancelar</button>
 
-  <div class="actions">
-    <button mat-button type="button" (click)="close()">Cancelar</button>
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-      Salvar
-    </button>
-  </div>
-
-</form>
+  <button
+    mat-button
+    class="confirm-button"
+    (click)="save()"
+    [disabled]="form.invalid"
+    [class.disabled]="form.invalid"
+  >
+    Salvar
+  </button>
+</mat-dialog-actions>

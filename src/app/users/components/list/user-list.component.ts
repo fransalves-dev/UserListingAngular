@@ -20,6 +20,7 @@ import { UsersActions } from '../../store/users.actions';
 import { UserFormModalComponent } from '../forms/user-form-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../delete-user/delete-user.component';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-users-list',
@@ -29,13 +30,13 @@ import { ConfirmDialogComponent } from '../delete-user/delete-user.component';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UsersListComponent implements AfterViewInit, OnChanges {
-  @Input() users: any[] = [];
+  @Input() users: User[] = [];
 
   private store = inject(Store);
 
   displayedColumns = ['icon', 'name', 'email', 'actions'];
 
-  dataSource = new MatTableDataSource<any>([]);
+  dataSource = new MatTableDataSource<User>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -45,19 +46,20 @@ export class UsersListComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['users']) {
-      this.dataSource = new MatTableDataSource(this.users);
-
-      if (this.paginator) {
-        this.dataSource.paginator = this.paginator;
-      }
+      this.dataSource.data = this.users ?? [];
     }
   }
 
   private dialog = inject(MatDialog);
 
-  editUser(user: any) {
+  editUser(user: User) {
     const dialogRef = this.dialog.open(UserFormModalComponent, {
       data: user,
+      width: '600px',
+      maxHeight: '90vh',
+      maxWidth: '90vw',
+      autoFocus: false,
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -67,9 +69,14 @@ export class UsersListComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  deleteUser(user: any) {
+  deleteUser(user: User) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { message: `Deseja deletar ${user.name}?` },
+      width: '600px',
+      maxHeight: '90vh',
+      maxWidth: '90vw',
+      autoFocus: false,
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -1,3 +1,20 @@
 <div class="toast" [ngClass]="data.type">
+
+  <div class="toast-header">
+    <div class="title-group">
+      <mat-icon class="icon">
+        {{ data.type === 'success' ? 'check_circle' : 'error' }}
+      </mat-icon>
+      <h2 class="title">
+        {{ data.type === 'success' ? 'Sucesso' : 'Erro' }}
+      </h2>
+    </div>
+
+    <button matIconButton class="close-btn" (click)="fechar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
   <span class="message">{{ data.message }}</span>
+
 </div>

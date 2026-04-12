@@ -1,0 +1,14 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+main-header {
+  flex-shrink: 0;
+}
+
+app-users-page {
+  flex: 1;
+  overflow: auto;
+}
