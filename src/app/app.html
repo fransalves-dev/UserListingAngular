@@ -1,11 +1,21 @@
-<h2>Resultado da Paginação</h2>
+<input
+  type="text"
+  [formControl]="searchControl"
+  placeholder="Buscar usuário..."
+/>
 
-<p>Total de registros: {{ resultado.total }}</p>
-<p>Página atual: {{ resultado.pagina }}</p>
-<p>Total de páginas: {{ resultado.totalPaginas }}</p>
+<ul *ngIf="usuariosState$ | async as state">
 
-<ul>
-  <li *ngFor="let user of resultado.itens">
-    <strong>{{ user.nome }}</strong> - {{ user.email }}
-  </li>
+  <li *ngIf="state.loading">Carregando...</li>
+
+  <ng-container *ngIf="!state.loading">
+    <li *ngFor="let user of state.data">
+      {{ user.nome }}
+    </li>
+
+    <li *ngIf="state.data.length === 0">
+      Nenhum resultado
+    </li>
+  </ng-container>
+
 </ul>

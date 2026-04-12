@@ -1,27 +1,43 @@
 import { Component } from '@angular/core';
-import { filtrarEPaginar } from './functions/filter-page.function';
-import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap,
+  catchError,
+  startWith,
+  finalize,
+  map,
+} from 'rxjs/operators';
+import { CommonModule } from '@angular/common';import { Usuario } from './models/user.model';
+import { UsuarioService } from './services/user.service';
+;
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './app.html',
 })
-
 export class AppComponent {
-  usuarios: Usuario[] = [
-    { id: 1, nome: 'Ana Silva', email: 'ana@email.com' },
-    { id: 2, nome: 'Bruno Souza', email: 'bruno@email.com' },
-    { id: 3, nome: 'Carlos Lima', email: 'carlos@email.com' },
-    { id: 4, nome: 'Ana Costa', email: 'anacosta@email.com' },
-    { id: 5, nome: 'Fernanda Rocha', email: 'fernanda@email.com' },
-  ];
+  searchControl = new FormControl('');
 
-  // 📄 resultado tipado
-  resultado = filtrarEPaginar<Usuario>(
-    this.usuarios,
-    (user) => user.nome.toLowerCase().includes('ana'),
-    { pagina: 1, tamanho: 2 },
-  );
+  loading = false;
+
+ usuariosState$ = this.searchControl.valueChanges.pipe(
+  startWith(''),
+  debounceTime(500),
+  distinctUntilChanged(),
+  switchMap((termo) =>
+    this.usuarioService.buscarUsuarios(termo || '').pipe(
+      map((data) => ({ loading: false, data })),
+      startWith({ loading: true, data: [] }),
+      catchError(() => of({ loading: false, data: [] }))
+    )
+  )
+);
+
+  constructor(private usuarioService: UsuarioService) {}
 }
