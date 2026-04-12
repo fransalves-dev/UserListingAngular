@@ -1,21 +1,28 @@
-<input
-  type="text"
-  [formControl]="searchControl"
-  placeholder="Buscar usuário..."
-/>
+<h2>Carrinho</h2>
 
-<ul *ngIf="usuariosState$ | async as state">
+<ul>
+  @for (item of itens(); track item.id) {
+    <li>
+      {{ item.nome }} - {{ item.quantidade }} x {{ item.preco | currency }}
 
-  <li *ngIf="state.loading">Carregando...</li>
-
-  <ng-container *ngIf="!state.loading">
-    <li *ngFor="let user of state.data">
-      {{ user.nome }}
+      <button (click)="removerItem(item.id)">-</button>
     </li>
-
-    <li *ngIf="state.data.length === 0">
-      Nenhum resultado
-    </li>
-  </ng-container>
-
+  }
 </ul>
+
+<p>
+  <strong>Total: {{ total() | currency }}</strong>
+</p>
+
+<button
+  (click)="
+    adicionarItem({
+      id: 1,
+      nome: 'Produto A',
+      preco: 10,
+      quantidade: 1,
+    })
+  "
+>
+  Adicionar Produto A
+</button>
