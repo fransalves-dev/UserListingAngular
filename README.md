@@ -1,59 +1,68 @@
-# UserListing
+# User Listing App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Aplicação Angular para gerenciamento de usuários com listagem, criação, edição e validação de dados.  
+O projeto utiliza arquitetura baseada em **NgRx (Store + Effects)**, Angular Material e testes com Jest.
 
-## Development server
+REQUISITOS: Node.js 18+, Angular CLI e npm 9+
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🚀 Stack Principal
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Frontend
+- Angular 21
+- Angular Material (UI Components)
+- RxJS (programação reativa)
+- Reactive Forms (formulários reativos)
 
-## Code scaffolding
+### State Management
+- NgRx Store
+- NgRx Effects
+- NgRx Entity
+- NgRx Store DevTools
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Testes
+- Jest
+- jest-preset-angular
+- ts-jest
 
-```bash
-ng generate component component-name
-```
+### Mock de API
+- JSON Server (API fake local) com o arquivo db.json
+  npx json-server --watch db.json --port 3000
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 📦 Instalação
 
-To build the project run:
+npm install
 
-```bash
-ng build
-```
+## Funcionalidades
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Exibição em cards com:
+  Nome
+  E-mail
+  Botão de edição
+Filtro por nome com debounce de 300ms
+Estado de loading durante requisições
+Tratamento de erro com mensagem
 
-## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Formulário reativo (Reactive Forms)
+Campos obrigatórios:
+  Nome
+  E-mail
+  CPF
+  Telefone
+  Tipo de telefone
+Validação por campo com mensagens de erro
+Botão de salvar desabilitado enquanto inválido
+Modo edição com preenchimento automático do formulário
 
-```bash
-ng test
-```
+## Melhorias
+Layout aprimorado com Angular Material
+Paginação de usuários
+Sistema de toasts (sucesso e erro)
+Modo escuro / claro
+Validação de formato de CPF e telefone
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
