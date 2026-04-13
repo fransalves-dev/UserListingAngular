@@ -28,7 +28,7 @@ REQUISITOS: Node.js 18+, Angular CLI e npm 9+
 
 ### Mock de API
 - JSON Server (API fake local) com o arquivo db.json
-  npx json-server --watch db.json --port 3000
+- npx json-server --watch db.json --port 3000
 
 
 ---
@@ -39,30 +39,31 @@ npm install
 
 ## Funcionalidades
 
-Exibição em cards com:
-  Nome
-  E-mail
-  Botão de edição
-Filtro por nome com debounce de 300ms
-Estado de loading durante requisições
-Tratamento de erro com mensagem
+- Exibição em cards com:
+  - Nome
+  - E-mail
+  - Botão de edição
+- Filtro por nome com debounce de 300ms
+- Estado de loading durante requisições
+- Tratamento de erro com mensagem
 
 
-Formulário reativo (Reactive Forms)
-Campos obrigatórios:
-  Nome
-  E-mail
-  CPF
-  Telefone
-  Tipo de telefone
-Validação por campo com mensagens de erro
-Botão de salvar desabilitado enquanto inválido
-Modo edição com preenchimento automático do formulário
+- Formulário reativo (Reactive Forms)
+- Campos obrigatórios:
+  - Nome
+  - E-mail
+  - CPF
+  - Telefone
+  - Tipo de telefone
+- Validação por campo com mensagens de erro
+- Botão de salvar desabilitado enquanto inválido
+- Modo edição com preenchimento automático do formulário
 
 ## Melhorias
-Layout aprimorado com Angular Material
-Paginação de usuários
-Sistema de toasts (sucesso e erro)
-Modo escuro / claro
-Validação de formato de CPF e telefone
+- Layout aprimorado com Angular Material
+- Paginação de usuários
+- Sistema de toasts (sucesso e erro)
+- Modo escuro / claro
+- Validação de formato de CPF e telefone
+- Habilidade de deletar usuário
 
