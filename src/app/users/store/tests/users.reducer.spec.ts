@@ -1,10 +1,10 @@
-import { User } from "../../models/user.model";
-import { UsersActions } from "../users.actions";
-import { initialUsersState } from "../users.state";
-import { usersReducer } from "../users.reducer";
+import { User } from '../../models/user.model';
+import { UsersActions } from '../users.actions';
+import { initialUsersState } from '../users.state';
+import { usersReducer } from '../users.reducer';
 
 describe('usersReducer', () => {
-  const mockUser: User = {
+  const user1: User = {
     id: 1,
     name: 'John',
     email: 'john@test.com',
@@ -13,18 +13,22 @@ describe('usersReducer', () => {
     typeOfPhone: null,
   };
 
-  it('should return initial state', () => {
-    const state = usersReducer(undefined, { type: 'unknown' });
+  const user2: User = {
+    id: 2,
+    name: 'Mary',
+    email: 'mary@test.com',
+    phone: '456',
+    cpf: '111',
+    typeOfPhone: null,
+  };
 
+  it('should return initial state', () => {
+    const state = usersReducer(undefined, { type: 'unknown' } as any);
     expect(state).toBe(initialUsersState);
   });
 
-
   it('should set loading true on loadUsers', () => {
-    const state = usersReducer(
-      initialUsersState,
-      UsersActions.loadUsers(),
-    );
+    const state = usersReducer(initialUsersState, UsersActions.loadUsers());
 
     expect(state.loading).toBe(true);
     expect(state.error).toBeNull();
@@ -33,10 +37,10 @@ describe('usersReducer', () => {
   it('should set users on loadUsersSuccess', () => {
     const state = usersReducer(
       initialUsersState,
-      UsersActions.loadUsersSuccess({ users: [mockUser] }),
+      UsersActions.loadUsersSuccess({ users: [user1] }),
     );
 
-    expect(state.users).toEqual([mockUser]);
+    expect(state.users).toEqual([user1]);
     expect(state.loading).toBe(false);
     expect(state.error).toBeNull();
   });
@@ -51,14 +55,13 @@ describe('usersReducer', () => {
     expect(state.loading).toBe(false);
   });
 
- 
   it('should add user on success', () => {
     const state = usersReducer(
       { ...initialUsersState, users: [] },
-      UsersActions.addUserSuccess({ user: mockUser }),
+      UsersActions.addUserSuccess({ user: user1 }),
     );
 
-    expect(state.users).toEqual([mockUser]);
+    expect(state.users).toEqual([user1]);
   });
 
   it('should set error on addUserFailure', () => {
@@ -70,21 +73,42 @@ describe('usersReducer', () => {
     expect(state.error).toBe('fail');
   });
 
-  
-  it('should update user on success', () => {
+  it('should update ONLY matching user (covers true branch)', () => {
     const initialState = {
       ...initialUsersState,
-      users: [mockUser],
+      users: [user1, user2],
     };
 
-    const updatedUser = { ...mockUser, name: 'Updated' };
+    const updatedUser = { ...user1, name: 'Updated' };
 
     const state = usersReducer(
       initialState,
       UsersActions.updateUserSuccess({ user: updatedUser }),
     );
 
+    // branch TRUE (id match)
     expect(state.users[0].name).toBe('Updated');
+
+    // sanity check
+    expect(state.users[1]).toBe(user2);
+  });
+
+  it('should NOT modify non-matching users (covers false branch)', () => {
+    const initialState = {
+      ...initialUsersState,
+      users: [user1, user2],
+    };
+
+    const updatedUser = { ...user1, name: 'Updated Again' };
+
+    const state = usersReducer(
+      initialState,
+      UsersActions.updateUserSuccess({ user: updatedUser }),
+    );
+
+    // branch FALSE (id !== user.id)
+    expect(state.users[1]).toBe(user2);
+    expect(state.users[1].name).toBe('Mary');
   });
 
   it('should set error on updateUserFailure', () => {
@@ -96,11 +120,10 @@ describe('usersReducer', () => {
     expect(state.error).toBe('fail');
   });
 
-
   it('should remove user on deleteUserSuccess', () => {
     const initialState = {
       ...initialUsersState,
-      users: [mockUser],
+      users: [user1],
     };
 
     const state = usersReducer(
