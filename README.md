@@ -2,6 +2,7 @@
 
 Aplicação Angular para gerenciamento de usuários com listagem, criação, edição e validação de dados.  
 O projeto utiliza arquitetura baseada em **NgRx (Store + Effects)**, Angular Material e testes com Jest.
+A parte escrita do teste está na pasta documentoPDF com as respostas das perguntas.
 
 REQUISITOS: Node.js 18+, Angular CLI e npm 9+
 
