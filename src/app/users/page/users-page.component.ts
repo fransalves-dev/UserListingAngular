@@ -7,7 +7,7 @@ import { UsersActions } from '../store/users.actions';
 
 import { UsersFilterComponent } from '../components/filter/user-filter.component';
 import { UsersListComponent } from '../components/list/user-list.component';
-import { selectUsers, selectUsersLoading, selectUsersError } from '../store/users.selector';
+import { selectUsers, selectUsersLoading, selectUsersError } from '../store/users.selectors';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormModalComponent } from '../components/forms/user-form-modal.component';

@@ -55,7 +55,7 @@ export class UserFormModalComponent {
       [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/), cpfPartialValidator],
     ],
     phone: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-    typeOfPhone: [null],
+    typeOfPhone: this.fb.control<'Celular' | 'Fixo' | null>(null),
   });
 
   ngOnInit() {

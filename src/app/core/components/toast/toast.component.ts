@@ -19,8 +19,6 @@ export class ToastComponent {
     private snackBarRef: MatSnackBarRef<ToastComponent>,
   ) {}
 
-  onClose = output<void>();
-
   fechar() {
     this.snackBarRef.dismiss();
   }
